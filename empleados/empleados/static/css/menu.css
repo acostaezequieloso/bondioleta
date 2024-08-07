@@ -1,0 +1,57 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	
+}
+/*---- el body es el que avarca toda la pantalla y podes modificar el fondo----*/
+body {
+	font-size: 16px;
+	min-height: 40.62em;
+	
+	background: url(../img/fondo.jpg);
+	background-repeat:  no-repeat;
+	height: 1800px;
+	background-position: left center;
+	background-attachment: fixed;
+	background-size: cover;
+
+}
+
+
+.contenedor {
+text-align: center;
+color: rgb(246, 207, 14);
+}
+
+.contenedor img{
+width: 75px;
+}
+
+
+#contenedor #seccion{
+	background: rgba(255, 255, 255, 0.655);
+
+}
+
+
+.contenedor_imagen{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.img{
+
+	width: 59px;
+	height: 50px;
+
+}
+
+
+.detalle{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	color: rgb(243, 243, 240);
+}

@@ -1,0 +1,43 @@
+
+
+* {
+	margin: 0px;
+	padding: 0px;
+	
+}
+/*---- el body es el que avarca toda la pantalla y podes modificar el fondo----*/
+body {
+	font-size: 16px;
+	min-height: 40.62em;
+	
+	background: url(../img/fondo.jpg);
+	background-repeat:  no-repeat;
+	height: 1800px;
+	background-position: left center;
+	background-attachment: fixed;
+	background-size: cover;
+
+}
+#contenedor #seccion{
+	background: rgba(255, 255, 255, 0.655);
+
+}
+
+/****************carritodecomp*************/
+
+
+
+/* Estilos para el botón de eliminación */
+.eliminar-producto {
+	background-color: #fefdfd; /* Color de fondo rojo */
+	color: #fff; /* Texto en color blanco */
+	border: none;
+	padding: 5px 10px;
+	cursor: pointer;
+	border-radius: 5px;
+	margin-left: 10px;
+}
+  
+.eliminar-producto:hover {
+	background-color: #ff666679; /* Color de fondo rojo claro cuando se pasa el ratón por encima */
+}

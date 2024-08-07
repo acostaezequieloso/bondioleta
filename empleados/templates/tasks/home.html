@@ -1,0 +1,513 @@
+{% extends 'tasks/base.html' %}
+
+{% block content %}
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+
+        <link  href="{% static 'css/estiloshome.css' %}" rel="stylesheet"/>
+        <link  href="{% static 'css/style.css' %}" rel="stylesheet"/>
+        <title>lo de Locho</title>
+      
+       
+	</head>
+	<body>
+
+        <main class="container" id="container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <h1 class="my-4">Carta</h1>
+                        <div class="list-group">
+                            {% for c in categorias %}
+                            <a href="{% url 'categorias' c.slug %}" class="list-group-item">{{ c.nombre }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+
+    
+
+
+		<main class="container py-5" id="contenedor">
+            <section class="card card-body" id="seccion">
+                <h1 class="display-2 text-center">Bienvenido al Restaurante</h1>
+                
+                <div class="container encabezado-1">
+                    <h1 class="titulo-principal">¡Nuestros sabores son únicos e inigualables!</h1>
+                    <!-- Lo ideal es que aparezca 1 solo h1 al principio de la estructura -->
+                    <p class="parrafo-nosotros">
+                        Somos la mejor empresa en calidad y servicio porque nos preocupan las necesidades de nuestros clientes.<br>
+                        Nuestro punto clave es la creacion de pizzas que tienen un buen sabor y un precio acorde a las preferiencias
+                        de cada uno.
+                        Tratamos de satisfacer a los mejores paladares de los amantes de la cocina italiana con un trato cercano y
+                        personalizado.
+    
+                    </p>
+                    <p class="parrafo-nosotros ">
+                        <!--La clase tiene que decir de que se trata o a que hace referencia-->
+                        La experiencia con más de 20 años en el arte de las pizzas nos permite ofrecer las mejores combinaciones
+                        para crear pizzas con
+                        un buen gusto, esquisitez, dedicación y que proporcionen el máximo placer para los sentidos.
+                    </p>
+                </div>
+        
+                <div class="text-center">
+                    <a class="btn btn-secondary" href="/signin/">
+                        iniciar sesion
+                    </a>
+                    <a class="btn btn-dark" href="/signup/">
+                        Registrate
+                    </a>
+                </div>
+
+
+        
+            </section>
+
+
+
+        </main>
+
+
+
+
+        <main  class="container" id="contenedor">
+        
+           <div class="card card-body" id="seccion">
+                <h2>Sobre Nosotros</h2>
+                
+                <section>
+            
+                    <div class="row container-fluid team-1">
+                        <div class=" col-sm-12 col-md-4 col-lg-4">
+                            <h3 class="team-titulo">Lucia Sandoval</h3>
+                            <img src="{% static 'img/chef-3.jpg' %}" alt="Lucia Sandoval" class="team-img img-fluid">
+                        </div>
+                        <div class="col-sm-12 col-md-8 col-lg-8">
+                            <p class="team-txt">
+                                Lucia Sandoval es una de las Chefs mas prestigiosa del mundo de la Cocina, con tan solo 26 años
+                                dirige un equipo
+                                de mas de 100 empleados.
+                            </p>
+                        </div>
+            
+            
+                        <div class=" row container-fluid team-1">
+                            <div class=" col-sm-12 col-md-4 col-lg-4">
+                                <h3 class="team-titulo">Alfonso Quiroga</h3>
+                                <img src="{% static 'img/chef-4.jpg' %}" alt="Alfonso Quiroga" class="team-img img-fluid">
+                            </div>
+                            <div class="col-sm-12 col-md-8 col-lg-8">
+                                <p class="team-txt">
+                                    Alfonso Quiroga es un pizzero de lujo que sorprende a sus clientes con innovaciones y
+                                    recetas peculiares.
+            
+                                </p>
+                            </div>
+            
+                        </div>
+                    </div>
+
+                </section>
+           </div>
+           
+            <section class="container-card">
+                {% for item in productos %}
+                <div class= "card" style="width: 250px; height: 300px;">
+                    <a href="{% url 'detail' item.slug %}"><img  src="{{item.imagen}}" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            {{item.nombre}}
+                        </h4>
+                        <h5>
+                            s/.{{item.precio|floatformat:"1"}}
+                        </h5>
+                    
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted"><a class="btn btn-success" href="{% url 'cart' item.slug %}">adicionar al acrrito</a></small>
+                    </div>
+
+            
+                </div>
+                {% empty %}
+                <div class="card w-100">
+                    <div class="card-body">
+                        <h4>No se encotraron productos de esa categoria</h4>
+                    </div>
+                </div>
+        
+                {% endfor %}
+
+
+            </section>
+
+
+
+
+            <!------------------------------- _catalogo.css--ofertas ------------------------------------------------------->
+            <section id="catalogo">
+                <div class="col-12 titulo-catalogo">
+                    <h2>Oferta</h2>
+                </div>
+
+
+                <div class="container-card">
+
+                    <div class="card" style="width: 18rem;">
+                        <img src="{% static 'img/pizza-de-tomate.jpg' %}" class="card-img-top" alt="Pizza de tomate">
+                        <div class="card-body">
+                            <h5 class="card-title">Pizza de Tomate</h5>
+                            <ul class="card-text">
+                                <li>Queso cremoso</li>
+                                <li>Tomate</li>
+                                <li>Aceitunas negras</li>
+                                <li>$250</li>
+                            </ul>
+                            <button type="button" class="btn btn-outline-danger" onclick="agregarAlCarrito('Pizza de Tomate', 250)"><i>
+                                <img src="{% static 'img/iconos/shopping-cart-.ico' %}" alt="agregar al carrito"></i> Agregar al carrito
+                            </button>
+                        </div>
+                    </div>
+
+
+
+                    <div class="card" style="width: 18rem;">
+                        <img src="{% static 'img/pizza-muzzarella.jpg' %}" class="card-img-top" alt="Pizza de Mozzarrellla">
+                        <div class="card-body">
+                            <h5 class="card-title">Pizza de Muzzarrellla.</h5>
+                            <ul class="card-text">
+                                <li>Queso mozzarella</li>
+                                <li>Oregano</li>
+
+                                <li>$260</li>
+                            </ul>
+                            <button type="button" class="btn btn-outline-danger" onclick="agregarAlCarrito('Pizza de Muuzzarella', 260)"><i>
+                                <img src="{% static 'img/iconos/shopping-cart-.ico' %}" alt="agregar al carrito"></i> Agregar al carrito
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <div class="card" style="width: 18rem;">
+                        <img src="{% static 'img/pizza-pepperoni.jpg' %}" class="card-img-top" alt="Pizza de pepperoni">
+                        <div class="card-body">
+                            <h5 class="card-title">Pizza de Pepperoni</h5>
+                            <ul class="card-text">
+                                <li>Queso mozzarella</li>
+                                <li>Pepperoni</li>
+                                <li>Oregano seco</li>
+
+                                <li>$270</li>
+                            </ul>
+                            <button type="button" class="btn btn-outline-danger" onclick="agregarAlCarrito('Pizza de Pepperoni', 270)"><i>
+                                <img src="{% static 'img/iconos/shopping-cart-.ico' %}" alt="agregar al carrito"></i> Agregar al carrito
+                            </button>
+                        </div>
+                    </div>
+
+
+
+                    <div class="card" style="width: 18rem;">
+                        <img src="{% static 'img/pizza-vegetariana.jpg' %}" class="card-img-top" alt="Pizza Vegetariana">
+                        <div class="card-body">
+                            <h5 class="card-title">Pizza Vegetariana</h5>
+                            <ul class="card-text">
+                                <li>Huevo</li>
+                                <li>Morron</li>
+                                <li>Champiniones</li>
+
+
+                                <li>$290</li>
+                            </ul>
+                            <button type="button" class="btn btn-outline-danger" onclick="agregarAlCarrito('Pizza de Vegetariana', 290)"><i>
+                                <img src="{% static 'img/iconos/shopping-cart-.ico' %}" alt="agregar al carrito"></i> Agregar al carrito
+                            </button>
+                        </div>
+                    </div>
+
+
+
+                    <div class="card" style="width: 18rem;">
+                        <img src="{% static 'img/pizza-champiniones (2).jpg' %}" class="card-img-top" alt="Pizza de champiniones">
+                        <div class="card-body">
+                            <h5 class="card-title">Pizza de Champiniones</h5>
+                            <ul class="card-text">
+                                <li>Oregano</li>
+                                <li>Queso mozzarella</li>
+                                <li>Champiniones</li>
+
+
+                                <li>$300</li>
+                            </ul>
+                            <button type="button" class="btn btn-outline-danger" onclick="agregarAlCarrito('Pizza de Champiniones', 300)"><i>
+                                <img src="{% static 'img/iconos/shopping-cart-.ico' %}" alt="agregar al carrito"></i> Agregar al carrito
+                            </button>
+
+
+                        </div>
+                    </div>
+
+
+                    <div class="card" style="width: 18rem;">
+                        <img src="{% static 'img/pizza-morron.jpg' %}" class="card-img-top" alt="Pizza de morron">
+                        <div class="card-body">
+                            <h5 class="card-title">Pizza de Morron</h5>
+                            <ul class="card-text">
+                                <li>Oregano</li>
+                                <li>Queso mozzarella</li>
+                                <li>Morron rojo</li>
+                                <li>Morron verde</li>
+
+
+                                <li>$270</li>
+                            </ul>
+                            <button type="button" class="btn btn-outline-danger" onclick="agregarAlCarrito('Pizza de Morron', 270)"><i>
+                                <img src="{% static 'img/iconos/shopping-cart-.ico' %}" alt="agregar al carrito"></i> Agregar al carrito
+                            </button>
+                        </div>
+                    </div>
+
+            </div>
+
+            
+
+
+
+
+            
+            {% if user.is_authenticated %}
+            <div class="btn-vermas d-flex justify-content-center w-150px">
+                <a href="/tasks" class="btn btn-danger btn-lg " tabindex="-1" role="button" aria-disabled="true">+
+                Ver todo el menu</a>
+
+            </div>
+
+            {% else %}
+            <div class="btn-vermas d-flex justify-content-center w-150px">
+                <a href="/signin" class="btn btn-danger btn-lg " tabindex="-1" role="button" aria-disabled="true">+
+                Para ver todo el menu inicia sesion</a>
+
+            </div>
+            {% endif %}
+
+            
+        
+            <section id="contacto">
+
+                <div class="titulo-contacto">
+                    <h2 class="tit">Contacto</h2>
+                    <h4 class="sub-tit">Información de contacto</h4>
+                </div>
+        
+        
+                <div class="contacto-lista ">
+        
+                    <div class="ubicacion ">
+                        <img class="imagen img-fluid" src="{% static 'img/iconos/ubicacion2.png' %}" alt="Ubicación">
+                        <h4>Nuestros locales</h4>
+                        <p>Av.Piedra Buena 3595, Buenos Aires, Argentina</p>
+                    </div>
+                    <div class="horarios ">
+                        <img class="imagen img-fluid" src="{% static 'img/iconos/tienda2.png' %}" alt="Horarios">
+                        <h4>Horarios de atención</h4>
+                        <p>Lunes a Viernes de 10 a 20:00 hs</p>
+                        <p>Sábados y Domingos cerrados</p>
+                    </div>
+                    <div class="telefonos ">
+                        <img class="imagen img-fluid" src="{% static 'img/iconos/telefono2.png' %}" alt="Teléfonos">
+                        <h4>Hace tu pedido</h4>
+                        <p>(011) 37025735</p>
+                        <p>(011) 61929134</p>
+                        <p>info@superiorlapaz.edu.ar</p>
+                    </div>
+        
+                </div>
+        
+        
+        
+        
+                <!-- Mapa de google maps -->
+                <div class="google-maps">
+                    <iframe class="maps"
+                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.176451017464!2d-58.493463623487244!3d-34.675495861293854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc93965a1746d%3A0x6a0b282175f8e959!2sAv.%20Piedra%20Buena%203595%2C%20C1439GVF%20CABA!5e0!3m2!1ses-419!2sar!4v1698768549079!5m2!1ses-419!2sar"
+                        width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+                        tabindex="0">
+                    </iframe>
+                </div>
+            </section>
+
+        </main>
+
+
+        <script>
+            // Inicializar el carrito como un objeto vacío
+            var carrito = {};
+        
+            // Función para agregar un producto al carrito
+            function agregarAlCarrito(producto, precio) {
+                if (carrito[producto]) {
+                    carrito[producto].cantidad++;
+                } else {
+                    carrito[producto] = {
+                        cantidad: 1,
+                        precio: precio
+                    };
+                }
+                actualizarCarrito();
+            }
+        
+            // Función para eliminar un producto del carrito
+            function eliminarDelCarrito(producto) {
+                if (carrito[producto]) {
+                    if (carrito[producto].cantidad > 1) {
+                        carrito[producto].cantidad--;
+                    } else {
+                        delete carrito[producto];
+                    }
+                    actualizarCarrito();
+                }
+            }
+        
+            // Función para calcular el total del carrito
+            function calcularTotalCarrito() {
+                var total = 0;
+                for (var producto in carrito) {
+                    total += carrito[producto].cantidad * carrito[producto].precio;
+                }
+                return total;
+            }
+        
+            // Función para actualizar la información del carrito en la página
+            function actualizarCarrito() {
+                var carritoElement = document.getElementById("carrito");
+                carritoElement.innerHTML = "";
+
+                for (var producto in carrito) {
+                    var item = document.createElement("div");
+                    item.innerHTML = producto + " x " + carrito[producto].cantidad + " - $" + (carrito[producto].cantidad * carrito[producto].precio);
+                    
+                    var eliminarBoton = document.createElement("button");
+                    var cruzEliminar = document.createElement("img");
+
+                    // Establece la ruta de la imagen de la cruz
+                    cruzEliminar.src = "{% static 'img/iconos/trash-can_115312.png' %}"; // Reemplaza con la ruta real de tu imagen
+                    
+                    // Define el atributo alt para la imagen (para accesibilidad)
+                    cruzEliminar.alt = "Eliminar";
+                    
+                    // Agrega la imagen de cruz como hijo del botón
+                    eliminarBoton.appendChild(cruzEliminar);
+
+                    eliminarBoton.className = "eliminar-producto"; // Agrega una clase CSS
+
+                    eliminarBoton.onclick = function (producto) {
+                        return function () {
+                            eliminarDelCarrito(producto);
+                        };
+                    }(producto);
+
+                    item.appendChild(eliminarBoton);
+                    carritoElement.appendChild(item);
+                }
+
+                var totalElement = document.getElementById("total");
+                totalElement.innerHTML = "Total: $" + calcularTotalCarrito();
+            }
+            
+            document.addEventListener('DOMContentLoaded', function () {
+                const cartToggle = document.getElementById('cart-toggle');
+                const cartDropdown = document.getElementById('carrito');
+
+                cartToggle.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (cartDropdown.style.display === 'block') {
+                        cartDropdown.style.display = 'none';
+                    } else {
+                        cartDropdown.style.display = 'block';
+                    }
+                });
+            });
+        </script>
+        
+
+
+
+      
+	</body>
+    <footer>
+
+        <div id="footer-container">
+
+            <div class="navegacion-footer">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="#">Inicio </a></li>
+
+                    <li><a href="#catalogo">Productos</a></li>
+
+
+                    <li><a href="#nosotros">Nosotros</a></li>
+
+                    <li><a href="#contacto">Contacto </a></li>
+
+                </ul>
+            </div>
+
+            <div class="contactanos-footer">
+                <h4>Contactanos</h4>
+                <h5>Av.Piedra Buena 3595, Buenos Aires, Argentina</h5>
+                <iframe class="google-maps-footer"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.176451017464!2d-58.493463623487244!3d-34.675495861293854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc93965a1746d%3A0x6a0b282175f8e959!2sAv.%20Piedra%20Buena%203595%2C%20C1439GVF%20CABA!5e0!3m2!1ses-419!2sar!4v1698768549079!5m2!1ses-419!2sar"
+                    width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+                    tabindex="0">
+                </iframe>
+                <h5> 1137025735</h5>
+                <h5>info@superiorlapaz.edu.ar</h5>
+            </div>
+
+
+            <div class="redes-footer">
+                <h4>Seguinos en</h4>
+                <a href="https://www.facebook.com/" target="blank">
+                    <img src="{% static 'img/iconos/facebook.png' %}" alt="Facebook">
+                </a>
+                <a href="https://www.instagram.com/" target="blank">
+                    <img src="{%  static 'img/iconos/instagram.png' %}" alt="Instagram">
+                </a>
+                <a href="https://www.youtube.com/" target="blank">
+                    <img src="{% static 'img/iconos/youtube.png' %}" alt="YouTube">
+                </a>
+                <a href="https://web.whatsapp.com/" target="blank">
+                    <img src="{% static 'img/iconos/whatsapp.png'%}" alt="WhatsApp">
+                </a>
+                <a href="https://twitter.com/login?lang=es" target="blank">
+                    <img src="{% static 'img/iconos/twitter_x.png' %}" alt="Twitter_x">
+                </a>
+               
+            </div>
+
+
+
+        </div>
+
+    </footer>
+    {% endblock content %}
+</html>

@@ -1,0 +1,424 @@
+@charset "UTF-8";
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+/* imagenes del logotipo*/
+
+/* main */
+img {
+  max-width: 100%;
+  max-height: 50%;
+  padding: auto;
+  
+}
+
+  
+
+
+#navbar-toggler-icon{
+  color:white;
+}
+
+
+/* /* MENU DE NAVEGACION: */
+#menu {
+  background-color: rgb(254, 252, 252);
+}
+
+#navegador {
+  display: flex;
+  justify-content: flex-end;
+  top: 0px;
+  right: 0px;
+}
+
+
+
+.navbar-nav .nav-link:hover {
+  background-color: rgb(197, 25, 197);
+  border-radius: 5px;
+}
+.navbar-nav .nav-link:hover .active {
+  background-color: rgb(198, 37, 198);
+}
+
+
+
+/* PIE DE PÀGINA */
+#footer-container {
+  width: 100%;
+  height: auto;
+  padding: 50px 100px;
+  background-color: #0d0d0d;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.navegacion-footer {
+  justify-content: space-between;
+  flex-direction: row;
+}
+.navegacion-footer h4 {
+  position: relative;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+.navegacion-footer h4:before {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0px;
+  width: 50px;
+  height: 2px;
+  background: rgb(255, 0, 149);
+}
+
+.navegacion-footer ul {
+  display: block;
+}
+.navegacion-footer ul li a {
+  text-decoration: none;
+  color: #999;
+  margin-bottom: 10px;
+}
+.navegacion-footer ul li a:hover {
+  color: #fff;
+}
+
+/*CONTACTANOS */
+.contactanos-footer {
+  position: relative;
+  font-family: "Poppins", sans-serif;
+}
+.contactanos-footer h5 {
+  color: #999;
+  font-size: 16px;
+}
+.contactanos-footer h4 {
+  position: relative;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 800;
+  /* peso de la letra-grosor */
+  margin-bottom: 15px;
+}       
+.contactanos-footer h4:before {
+  content: " ";
+  position: absolute;
+  bottom: -5px;
+  left: 0px;
+  width: 50px;
+  height: 2px;
+  background: rgb(225, 0, 255);
+}
+
+.google-maps-footer {
+  width: 80px;
+  height: 80px;
+}
+
+/* REDES */
+.redes-footer {
+  position: relative;
+}
+.redes-footer a {
+  text-decoration: none;
+}
+.redes-footer h4 {
+  position: relative;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 800;
+  /* peso de la letra-grosor */
+  margin-bottom: 15px;
+}
+.redes-footer h4:before {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0px;
+  width: 50px;
+  height: 2px;
+  background: rgb(255, 0, 200);
+}
+
+.redes-footer img {
+  /* Por que las imagenes tienen una rayira abajo como lo saco?? */
+  width: auto;
+  height: 35px;
+}
+
+/* ********************* NOSOTROS************************************ */
+/* nuestro equipo */
+/* grid se habilita */
+/* Cuantas columnas y cuanto mide cada una */
+/* grid-template-columns: auto auto auto; */
+/* Cuantas filas y cuanto mide cada una */
+/*  grid-template-rows: auto auto auto;  */
+.team-titulo {
+  text-align: center;
+  font-family: "Pacifico", cursive;
+  color: #DE423A;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.team-img {
+  display: flex;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  /* sire para que no se distorcionen las imagenes */
+  border-radius: 50%;
+}
+
+.team-txt {
+  padding: 100px 0px;
+  color: #f90202;
+}
+
+.team-1 {
+  display: flex;
+  justify-content: center;
+}
+
+main h2 {
+  font-size: 30px;
+  font-family: "Kaushan Script", cursive;
+  text-align: center;
+  color: #DE423A;
+}
+
+
+/* PARRAFO DE PRESENTACION */
+.container{
+  
+  color: #881e1ee6;
+}
+.encabezado-1 {
+  font-size: 18px;
+  /* Tamaño */
+  /*  color: rgb(255, 255, 255); */
+  color: #070707;
+  /*  line-height: 40px; */
+  /* Espacio entre linas  */
+  /*  background-color: hsl(0, 69%, 32%); */
+  padding: 50px;
+}
+.encabezado-1 .titulo-principal {
+  font-size: 25px;
+  font-family: "Kaushan Script", cursive;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+
+
+.parrafo-nosotros {
+  font-family: "Asap", sans-serif;
+  font-size: 18px;
+  text-align: center;
+  color: rgb(12, 12, 12);
+  line-height: 30px;
+  /* padding: 50px; */
+}
+
+.titulo-catalogo {
+  font-size: 50px;
+  font-family: "Kaushan Script", cursive;
+  text-align: center;
+  color: rgb(246, 238, 243);
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-weight: 100px;
+  animation-duration: 2s;
+  animation-name: aparecer;
+}
+
+
+
+
+.container-card {
+  display: left;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: flex;
+}
+
+.card {
+  border: rgb(247, 248, 246) solid 2px;
+  margin-bottom: 5%;
+  transition: all 1s;
+}
+.card:hover {
+  transform: scale(1.2);
+}
+
+.card-body {
+  padding: 15px;
+}
+.card-body .card-text li {
+  padding-left: 20px;
+  list-style: none;
+}
+
+.card-img-top {
+  width: 100px;
+  height: auto;
+  /* transition: all 1s;
+
+     &:hover{
+         transform: scale(1.1);
+
+     } 
+  */
+}
+
+@keyframes aparecer {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 3;
+  }
+}
+.btn-vermas {
+  margin-bottom: 60px;
+}
+
+/* ******************************************** CONTACTOS ********************************* */
+.titulo-contacto .tit {
+  font-size: 30px;
+  font-family: "Kaushan Script", cursive;
+  text-align: center;
+}
+.titulo-contacto .sub-tit {
+  font-family: "Asap", sans-serif;
+  font-size: 18px;
+  text-align: center;
+  color: rgb(253, 253, 253);
+  line-height: 20px;
+}
+
+.contacto-lista .ubicacion {
+  text-align: center;
+  align-items: center;
+  color: rgb(244, 244, 247);
+}
+.contacto-lista .ubicacion .imagen {
+  width: auto;
+  height: 50px;
+  position: relative;
+}
+.contacto-lista .ubicacion p {
+  position: relative;
+  color: rgb(245, 245, 247);
+}
+.contacto-lista .horarios {
+  text-align: center;
+  align-items: center;
+  margin-top: 20px;
+  color: rgb(248, 247, 251);
+}
+.contacto-lista .horarios .imagen {
+  width: auto;
+  height: 50px;
+  position: relative;
+}
+.contacto-lista .horarios p {
+  position: relative;
+  color: rgb(252, 252, 252);
+
+}
+.contacto-lista .telefonos {
+  margin-top: 20px;
+  text-align: center;
+  align-items: center;
+  color: rgb(252, 251, 254);
+}
+.contacto-lista .telefonos .imagen {
+  width: auto;
+  height: 50px;
+  position: relative;
+}
+.contacto-lista .telefonos p {
+  position: relative;
+  color: rgb(249, 248, 250);
+}
+
+.maps {
+  width: 800px;
+  height: 450px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.google-maps {
+  display: flex;
+  justify-content: center;
+}
+
+
+/***************************** Productos: Catalogo de productos****************/
+.titulo-productos {
+  font-size: 50px;
+  font-family: "Kaushan Script", cursive;
+  text-align: center;
+  color: rgb(255, 0, 0);
+  margin-top: 100px;
+  margin-bottom: 50px;
+  font-weight: 100px;
+  animation-duration: 2s;
+  animation-name: aparecer;
+}
+
+.container-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  
+}
+
+.card {
+  border: black solid 2px;
+  margin-bottom: 5%;
+  transition: all 1s;
+}
+.card:hover {
+  transform: scale(1.1);
+}
+
+.card-body {
+  padding: 15px;
+  
+}
+
+.card-img-top {
+  width: 100%;
+  height: 50%;
+}
+
+@keyframes aparecer {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 3;
+  }
+}
+.color-card {
+  background-color: #ffbb83;
+  
+}
+
+

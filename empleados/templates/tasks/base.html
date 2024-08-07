@@ -1,0 +1,97 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+       <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="shortcut icon" href="{% static 'img/logotipo.jpg' %}" width="90px" height="90px" type="image/x-icon">
+        <title>lo de Lucho</title> <!-- Clave para la busqueda, maximo 70 caracteres -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+        <link  href="{% static 'css/nav.css' %}" rel="stylesheet"/>
+  
+    </head>
+    <body>
+    
+        <nav class="navbar navbar-expand-lg  navbar-light" style="background-color: aliceblue;">
+            <div class="container">
+
+                <a class="navbar-brand" href="#">
+                    <img src="{% static 'img/logotipo.jpg' %}" width="90px" height="90px" alt="Pizza Logo">
+                    lo de Lucho</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a href="/" class="nav-link">Inicio</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a href="/tasks" class="nav-link">Menu</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a href="/logout" class="nav-link">Cerrar</a>
+                        </li>
+
+                        
+                        <form class="form-inline my-2 my-lg-0 mr-4" action="{% url 'search' %}" method="GET">
+                            <button class="btn btn-primary my-2 my-sm-0" type="submit">buscar</button>
+                            <input class="form-control mr-sm-2"name="q" type="search" placeholder="Search" aria-label="search" >
+                                
+                            
+                        
+                        </form>
+                        <a href="/mycart" class="btn btn-success"> {{request.session.data.count}} item {{request.session.data.count|pluralize}}</a>
+
+
+
+                        
+                        <li class="nav-item">
+                            
+                            <a class="nav-link" id="cart-toggle" > Carrito
+                                <div id="carrito" class="cart-dropdown">
+                                    <h2>Carrito de Compras</h2>
+                                    <ul id="carrito-lista">
+                                        <!-- Los elementos seleccionados se mostrarán aquí -->
+                                    </ul>
+                                    <p>Total: $<span id="total">0</span></p>
+                                </div>
+
+                                <div id="carrito"></div>
+                                <div id="total">Total: $0</div>
+                            </a>
+                            
+                        </li>
+
+                        
+
+                        
+                        {% else %}
+                        <li class="nav-item">
+                            <a href="/signup" class="nav-link">Registrate</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/signin" class="nav-link">iniciar sesion</a>
+                        </li> 
+                        <li class="nav-item">
+
+                    
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+       
+
+    
+        {% block content %}
+        {% endblock %}
+
+    </body>
+</html>

@@ -1,0 +1,340 @@
+
+
+{% extends 'tasks/base.html' %}
+
+{% block content %}
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--stile del menu-->
+        
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> 
+        <link  href="{% static 'css/estiloshome.css' %}" rel="stylesheet"/>
+        <link  href="{% static 'css/menu.css' %}" rel="stylesheet"/>
+        
+        <!-- FONTS -->
+        <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+
+        <!--Vinculamos con CSS-->
+        <link  href="{% static 'css/estiloshome.css' %}" rel="stylesheet"/>
+        <link  href="{% static 'css/style.css' %}" rel="stylesheet"/>
+       
+        <link rel="shortcut icon" href="{% static 'img/iconos/pizza.png' %}" type="image/x-icon">
+
+        <!--stile del menu-->
+
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> 
+    
+        <title>lo de Lucho</title>
+    </head>
+
+    <body>
+        <main class="container" id="container">
+            <div class="contenedor">
+                <h1><a href="#"><img src="{% static 'img/kisspng-knife-spoon-fork-silver-silver-spoon-5a8234a2c2b846.5318903315184825947976.png' %}" alt=""></a> Menu <a href="#"><img src="{% static 'img/kisspng-knife-spoon-fork-silver-silver-spoon-5a8234a2c2b846.5318903315184825947976.png' %}" alt=""></a></h1>   
+                <p>ENTRE AMIGOS</p>
+                
+            
+            </div>
+
+            
+        <!-- Cuerpo del sitio -->
+
+     
+
+        <h2 class="titulo-productos"> Nuestro Menú</h2>
+
+        
+        <div class="container-card">
+            {% for Prueba in lista_prueba %}
+            <div class="card color-card" style="width: 18rem;">
+                {% if Prueba.imagen %}
+                <img src="{{Prueba.imagen.url}}" class="card-img-top" alt="">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ Prueba.nombre }}</h5>
+                    <ul class="card-text">
+                        
+                        <li>{{Prueba.descripcion}}</li>
+                        <li>{{Prueba.precio}}</li>
+    
+                    </ul>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal_{{ Prueba.id }}">
+                        <i><img src="{% static 'img/iconos/shopping-cart-.ico' %}" alt="agregar al carrito"></i>
+                        Agregar al carrito
+                    </button>
+                </div>
+            </div>
+        
+            <!-- Modal -->
+            <div class="modal fade" id="modal_{{ Prueba.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="modalLabel_{{ Prueba.id }}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabel_{{ Prueba.id }}">{{ Prueba.nombre }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="card-text">
+                                
+                                <li>{{Prueba.descripcion}}</li>
+    
+                                <li>{{Prueba.precio}}</li>
+                            </ul>
+                            <h6>¿Estás seguro/a de agregarlo al carrito?</h6>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-danger" onclick="agregarAlCarrito('{{ Prueba.nombre }}','{{ Prueba.precio}}' )"><i>
+                                <img src="{% static 'img/iconos/shopping-cart-.ico' %}" alt="agregar al carrito"></i> Agregar al carrito
+                            </button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <h1 class="my-4">Carta</h1>
+                    <div class="list-group">
+                        {% for c in categorias %}
+                        <a href="{% url 'categorias' c.slug %}" class="list-group-item">{{ c.nombre }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                {% for item in productos %}
+                <div class="col-lg-3" col-md-4 mb-4>
+                    <div class="card h-100">
+                        
+    
+                        <img class="card-img-top" src="{{item.imagen}}">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                {{item.nombre}}
+                            </h4>
+                            <h5>
+                                s/.{{item.precio|floatformat:"1"}}
+                            </h5>
+                            
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted"><a class="btn btn-success" href="{% url 'cart' item.slug %}">adicionar al carrito</a></small>
+                        </div>
+    
+                    </div>
+                    
+                </div>
+    
+            
+                {% empty %}
+                <div class="card w-100">
+                    <div class="card-body">
+                        <h4>No se encotraron productos de esa categoria</h4>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+       
+
+        
+        <!-- Mapa de google maps -->
+        <div class="google-maps">
+            <iframe class="maps"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.176451017464!2d-58.493463623487244!3d-34.675495861293854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc93965a1746d%3A0x6a0b282175f8e959!2sAv.%20Piedra%20Buena%203595%2C%20C1439GVF%20CABA!5e0!3m2!1ses-419!2sar!4v1698768549079!5m2!1ses-419!2sar"
+                width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+                tabindex="0">
+            </iframe>
+        </div>
+
+
+        <!----------------------------------- Footer ------------------------------->
+        <footer>
+
+            <div id="footer-container">
+    
+                <div class="navegacion-footer">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="#">Inicio </a></li>
+                        <li><a href="">Contacto </a></li>
+    
+                    </ul>
+                </div>
+    
+                <div class="contactanos-footer">
+                    <h4>Contactanos</h4>
+                    <h5>Av.Piedra Buena 3595, Buenos Aires, Argentina</h5>
+                    <iframe class="google-maps-footer"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.176451017464!2d-58.493463623487244!3d-34.675495861293854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc93965a1746d%3A0x6a0b282175f8e959!2sAv.%20Piedra%20Buena%203595%2C%20C1439GVF%20CABA!5e0!3m2!1ses-419!2sar!4v1698768549079!5m2!1ses-419!2sar"
+                        width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+                        tabindex="0">
+                    </iframe>
+                    <h5> 1137025735</h5>
+                    <h5>info@superiorlapaz.edu.ar</h5>
+                </div>
+    
+    
+                <div class="redes-footer">
+                    <h4>Seguinos en</h4>
+                    <a href="https://www.facebook.com/" target="blank">
+                        <img src="{% static 'img/iconos/facebook.png' %}" alt="Facebook">
+                    </a>
+                    <a href="https://www.instagram.com/" target="blank">
+                        <img src="{%  static 'img/iconos/instagram.png' %}" alt="Instagram">
+                    </a>
+                    <a href="https://www.youtube.com/" target="blank">
+                        <img src="{% static 'img/iconos/youtube.png' %}" alt="YouTube">
+                    </a>
+                    <a href="https://web.whatsapp.com/" target="blank">
+                        <img src="{% static 'img/iconos/whatsapp.png'%}" alt="WhatsApp">
+                    </a>
+                    <a href="https://twitter.com/login?lang=es" target="blank">
+                        <img src="{% static 'img/iconos/twitter_x.png' %}" alt="Twitter_x">
+                    </a>
+                   
+                </div>
+    
+    
+    
+            </div>
+    
+        </footer>
+
+
+        <!-- Optional JavaScript; choose one of the two! -->
+
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script> -->
+
+        <!-- Option 2: Separate Popper and Bootstrap JS -->
+        <script>
+            // Inicializar el carrito como un objeto vacío
+            var carrito = {};
+        
+            // Función para agregar un producto al carrito
+            function agregarAlCarrito(producto, precio) {
+                if (carrito[producto]) {
+                    carrito[producto].cantidad++;
+                } else {
+                    carrito[producto] = {
+                        cantidad: 1,
+                        precio: precio
+                    };
+                }
+                actualizarCarrito();
+            }
+        
+            // Función para eliminar un producto del carrito
+            function eliminarDelCarrito(producto) {
+                if (carrito[producto]) {
+                    if (carrito[producto].cantidad > 1) {
+                        carrito[producto].cantidad--;
+                    } else {
+                        delete carrito[producto];
+                    }
+                    actualizarCarrito();
+                }
+            }
+        
+            // Función para calcular el total del carrito
+            function calcularTotalCarrito() {
+                var total = 0;
+                for (var producto in carrito) {
+                    total += carrito[producto].cantidad * carrito[producto].precio;
+                }
+                return total;
+            }
+        
+            // Función para actualizar la información del carrito en la página
+            function actualizarCarrito() {
+                var carritoElement = document.getElementById("carrito");
+                carritoElement.innerHTML = "";
+        
+                for (var producto in carrito) {
+                    var item = document.createElement("div");
+                    item.innerHTML = producto + " x " + carrito[producto].cantidad + " - $" + (carrito[producto].cantidad * carrito[producto].precio);
+                    
+                    var eliminarBoton = document.createElement("button");
+                    var cruzEliminar = document.createElement("img");
+
+                    // Establece la ruta de la imagen de la cruz
+                    cruzEliminar.src = "{% static 'img/iconos/trash-can_115312.png' %}"; // Reemplaza con la ruta real de tu imagen
+                    
+                    // Define el atributo alt para la imagen (para accesibilidad)
+                    cruzEliminar.alt = "Eliminar";
+                    
+                    // Agrega la imagen de cruz como hijo del botón
+                    eliminarBoton.appendChild(cruzEliminar);
+
+                    eliminarBoton.className = "eliminar-producto"; // Agrega una clase CSS
+
+                    eliminarBoton.onclick = function (producto) {
+                        return function () {
+                            eliminarDelCarrito(producto);
+                        };
+                    }(producto);
+
+                    item.appendChild(eliminarBoton);
+                    carritoElement.appendChild(item);
+                }
+
+                var totalElement = document.getElementById("total");
+                totalElement.innerHTML = "Total: $" + calcularTotalCarrito();
+            }
+            
+            document.addEventListener('DOMContentLoaded', function () {
+                const cartToggle = document.getElementById('cart-toggle');
+                const cartDropdown = document.getElementById('carrito');
+
+                cartToggle.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (cartDropdown.style.display === 'block') {
+                        cartDropdown.style.display = 'none';
+                    } else {
+                        cartDropdown.style.display = 'block';
+                    }
+                });
+            });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
+            integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"
+            integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous">
+        </script>
+        {% endblock content %}
+
+        </main>
+    </body>
+    
+
+</html>
+
+
